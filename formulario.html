@@ -8,44 +8,31 @@
 <body class="fondo">
 <h1><center><b>Curriculum Vitae</b></center></h1>
 <center><small><b>Registro de Datos</b></small></center>
-<br><br>	
+<br><br>
+<form action="recibir_formulario.php" method="post" name="formulario">	
 <table width="100%">
 	<tr class="mimo">
 		<th bgcolor="#1798f6" colspan="2">Personal Information</th>
 	</tr>
 	<tr  class="osi">
-		<td align="right"><label><b>Firts Name</b></label></td>
-		<td><input name="firts_name" placeholder="enter your firts name" title="enter your firts name" required="required"
+		<td align="right"><label><b>Nombres</b></label></td>
+		<td><input name="Nombres" id="Nombres" placeholder="Ingresa tus Nombres" title="Integresa tus Nombres" required="required"
 			size="50" id="num1"><br>
-			<small>Please, enter firs name  here</small>
+			<small>Por favor, ingresa tus nombres</small>
 		</td>
 	</tr>
 
-<tr  class="osi">
-<td align="right"><label><b>second name</b></label></td>
+<tr class="osi">
+<td align="right"><label><b>Apellidos</b></label></td>
 <td>
-	<input type="text" name="second_name" id= "second_name" required="required" placeholder="enter your second name" title="enter your second name" size="50"><br>
-	<small>enter your second name</small>
+	<input type="text" name="Apellidos" id= "Apellidos" required="required" placeholder="Ingresa tus apellidos" title="Ingresa tus apellidos" size="50"><br>
+	<small>Por favor, ingresa tus apellidos</small>
 </td>
 </tr>
 
-<tr class="osi">
-<td align="right"><label><b>last first name</b></label></td>
-<td>
-	<input type="text" name="last_first_name" id= "last_first_name" required="required" placeholder="enter your last first name" title="enter your last first name" size="50"><br>
-	<small>enter your last first name</small>
-</td>
-</tr>
 
-<tr  class="osi">
-<td align="right"><label><b>last second name</b></label></td>
-<td>
-	<input type="text" name="last_second_name" id= "last_second_name" required="required" placeholder="enter your last second name" title="enter your last second name" size="50"><br>
-	<small>enter your last second name</small>
-</td>
-</tr>
 <tr class="osi">
-	<td align="right"> <ladel><b>DNI</b></ladel></td>
+	<td align="right"> <ladel><b>Cedula</b></ladel></td>
 	<td>
 		<select name="nationality" id="nationality" title="select your nationality">
 		<option value="V" title="Venezol@">V</option>
@@ -53,8 +40,8 @@
 		<option value="J" title="juridic@">J</option>
 		<option value="G" title="gubernamental">G</option>
 		</select>
-		<input type="number" name="dni" id="dni" title="enter your DNI" required="required" placeholder="ex:28073783"><br>
-		<small>enter your DNI</small>
+		<input type="number" name="Cedula" id="Cedula" title="Ingresa tu Cedula" required="required" placeholder="ex:28073783"><br>
+		<small>ePor favor, ingresa tu cedula</small>
 	</td>
 </tr>
 <tr class="osi">
@@ -211,7 +198,11 @@
 				</table>
 		</td>
 	</tr>
-</table>		
+</table>
+<center><br><br>note: all fields must be completed
+	<br><br><input type="submit" title="Send" value="Send">
+</center>
+</form>		
 </body>
 </html>
 <script type="text/javascript">
