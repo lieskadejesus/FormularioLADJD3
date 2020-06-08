@@ -2,10 +2,10 @@
 include('clasedb.php');
 extract($_REQUEST);
 
-//echo $nombre."-".$apodo."-".$ubicacion."-".$poblacion."-".$natalidad."-".$mortalidad;
+//echo $nombres."-".$apellidos."-".$cedula;
 $db=new clasedb();
 $con=$db->conectar();
-$sql="INSERT INTO datos_ciudades VALUES(NULL,'".$nombre."','".$apodo."','".$ubicacion."','".$poblacion."','".$natalidad."','".$mortalidad."')";
+$sql="INSERT INTO datos_personales VALUES(NULL,'".$nombres."','".$apellidos."','".$cedula."')";
 $resultado=mysqli_query($con,$sql);
 
 ?>
