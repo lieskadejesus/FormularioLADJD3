@@ -42,3 +42,4 @@ class Veraniegas extends ciudades
     		$this->islas=$islas;
     	}
 }
+?>
