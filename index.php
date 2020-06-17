@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inicio</title>
+	<title>Bienvenidos</title>
 </head>
 <body>
-<strong>Bienvenidos.....</strong><br>
-<ul>
-	<li><a href="ciudades.php">Formulario</a></li>
-	<li><a href="./ciudades1/CiudadesControlador.php?operacion=index">Ciudades</a></li>
-	<li><a href="./ciudades1/mostrar.php">Herencia</a></li>
-</ul>
+	<strong>Bienvenidos.....</strong>
+	<ul>
+		<li><a href="formulario.html">Formulario</a></li>
+		<li><a href="./personas/PersonasControlador.php?operacion=index">Personas</a></li>
+		<li><a href="#">Modulo 3</a></li>
+	</ul>
 </body>
 </html>

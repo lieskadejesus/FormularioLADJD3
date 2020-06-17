@@ -4,129 +4,153 @@ extract($_REQUEST);
 
 class PersonasControlador
 {
-
 	public function index(){
-		$db=new clasedb();//instanciando clasedb
-		$conex=$db->conectar();//conectando con la base de datos
+		$db=new clasedb();
+		$conex=$db->conectar();
 
-		$sql="SELECT * FROM datos_personales";//query
+		$sql="SELECT * FROM datos_personales";
 
-		$res=mysqli_query($conex,$sql);//ejecutando query
-		$campos=mysqli_num_fields($res);//cuantos campos traer la consulta
-		$filas=mysqli_num_rows($res);//cuantos registro trae la consulta
+		$res=mysqli_query($conex,$sql);
+		$campos=mysqli_num_fields($res);
+		$filas=mysqli_num_rows($res);
 		$i=0;
-		$datos[]=array();//Inicializando array
-        //extrayendo datos
-        while($data=mysqli_fetch_array($res)) {
-        	for ($j=0; $j < $campos; $j++){ 
-        		$datos[$i][$j]=$data[$j];
- 	        }
- 	        $i++;
-        }
-       mysqli_close($conex);
-           //enviando datos
-           header("Location: index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
-	}//fin de la funcion index
-	
- 	public function modificar(){
- 		extract($_REQUEST);//extrayendo valores de url
- 		$db=new clasedb();
- 		$conex=$db->conectar();//conectando con la base de datos
+		$datos[]=array();
 
- 		$sql="SELECT * FROM datos_personales WHERE id=".$id_persona."";
- 		$res=mysqli_query($conex,$sq1);//ejecutando consulta
- 		$data=mysqli_fetch_array($res);//extrayendo datos en array
+		while($data=mysqli_fetch_array($res)){
+			for ($j=0; $j < $campos; $j++){
+				$datos[$i][$j]=$data[$j];
+			}
+			$i++;
+		}
+		mysqli_close($conex);
+header("Location: index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	}
+    public function modificar(){
+        extract($_REQUEST);
+        $db=new clasedb();
+        $conex=$db->conectar();
+        $sql="SELECT * FROM datos_personales WHERE id=".$id_persona."";
+		$res=mysqli_query($conex,$sql);
+        $data=mysqli_fetch_array($res);
+        
+        header("Location: editar.php?data=".serialize($data));
+    }
 
- 		header("Location: editar.php?data=".serialize($data));
- 	}//fin de la funcion modificar
+    public function actualizar(){
+        extract($_REQUEST);
+        $db=new clasedb();
+        $conex=$db->conectar();
 
- 	public function actualizar(){
- 		extract($_REQUEST);//EXTRAYENDO VARIABLES DEL FORMULARIO
- 		$db=new clasedb();
- 		$conex=$db->conectar();//conectando con la base de datos
+        $sql="UPDATE datos_personales set 
+        nombres='$nombres',
+        apellidos='$apellidos',
+        cedula='$cedula'
+        WHERE id=$id_persona";
+       	$res=mysqli_query($conex,$sql);
+        	if ($res) {
+        		?>
+        		<script>
+        			alert("REGISTRO MODIFICADO");
+        			window.location="PersonasControlador.php?operacion=index";
+        		</script>
+        		<?php
+        	}else{
+        		?>
+        		<script>
+        			alert("ERROR AL MODIFICAR REGISTRO");
+        			window.location="PersonasControlador.php?operacion=index";
+        		</script>
+        		<?php
+        	}
+        $this->index();
+    }
 
-   			$sql="UPDATE datos_personales SET 
-   			nombres='$nombres',
-   			apellidos='$apellidos',
-   			cedula='$cedula'
-   			WHERE id=$id_persona";
-   			$res=mysqli_query(conex,$sql);
-   			if ($res) {
-   				?>
-   				<script type="text/javascript">
-   					alert("REGISTRO MODIFICADO");
-   					window.location="PersonasControlador.php?operacion=index";
-   				</script>
-   				<?php
-   			} else {
-   				?>
-   				<script type="text/javascript">
-   					alert("ERROR AL MODIFICAR EL REGISTRO");
-   					window.location="PersonasControlador.php?operacion=index";
-   				</script>
-   				<?php
-   			}
-   		$this->index();
- 	}//fin de la funcion actualizar
+    public function eliminar(){
 
- 	public function eliminar()
- 	{
- 		extract($_REQUEST);//extrayendo variables del url
- 		$db=new clasedb();
- 		$conex=$db->conectar();//conectando con la base de datos
+    	extract($_REQUEST);//extrayendo variables del url
+    	$db=new clasedb();
+    	$conex=$db->conectar();//conectando con la base de datos
 
- 		$sql="DELETE FROM datos_personales WHERE id=".$id_persona;
+    	$sql="DELETE FROM datos_personales WHERE id=".$id_persona;
 
- 		$res=mysqli_query($conex,$sql);
- 		if ($res) {
- 			?>
- 			<script type="text/javascript">
- 				alert("REGISTRO ELIMINADO");
- 				window.location="PersonasControlador.php?operacion=index";
- 			</script>
- 			<?php
- 		} else {
- 			?>
- 			<script type="text/javascript">
- 				alert("REGISTRO NO ELIMINADO");
- 				window.location="PersonasControlador.php?operacion=index";
- 			</script>
- 			<?php
- 		}
- 	}//fin de la funcion eliminar
-
-	static function controlador($operacion){
-		$persona=new PersonasControlador();
-		switch ($operacion) {
-			case 'index':
-				$persona->index();
-				break;
-			case 'registrar':
-				$persona->registrar();
-				break;
-			case 'guardar':
-				$persona->guardar();
-				break;
-			case 'modificar':
-				$persona->modificar();
-				break;	
-			case 'actualizar':
-				$persona->actualizar();
-				break;
-			case 'eliminar':
-				$persona->eliminar();
-				break;
-			default:
+		$res=mysqli_query($conex,$sql);
+		if ($res)
+		 {
 			?>
 			<script type="text/javascript">
-				alert("No existe la ruta");
+				alert("REGISTRO ELIMINADO");
 				window.location="PersonasControlador.php?operacion=index";
 			</script>
 			<?php
-			break;
-		}//cierre del switch
-	}//cierre de la funcion controlador
-}// cierre de la clase Personas Controlador
+		}else{
+			?>
+			<script type="text/javascript">
+				alert("REGISTRO NO ELIMINADO");
+				window.location="PersonasControlador.php?operacion=index";
+			</script>
+			<?php
+			}
+    }
 
+    public function registrar()
+    {
+       	header("location:registrar.php");
+    }
+
+    public function guardar()
+    {
+       	extract($_REQUEST);
+	$db=new clasedb();
+	$con=$db->conectar();
+	$sql="INSERT INTO datos_personales VALUES(NULL,'".$nombres."','".$apellidos."','".$cedula."')";
+	$resultado=mysqli_query($con,$sql);
+	 if ($resultado) { 
+	?>
+	<b>Registro ingresado ---> <a href="index.php">Volver</a></b>
+	<?php
+	}else{
+	?>
+	<b>Registro no ingresado ---> <a href="index.php">Volver</a></b>
+	<?php
+	}
+        $this->index();
+    }
+
+
+
+
+
+	static function controlador($operacion){
+		$persona=new PersonasControlador();
+	switch ($operacion) {
+		case 'index':
+			$persona->index();
+			break;
+		case 'registrar':
+			$persona->registrar();
+			break;
+		case 'guardar':
+			$persona->guardar();
+			break;
+		case 'modificar':
+			$persona->modificar();
+			break;
+		case 'actualizar':
+			$persona->actualizar();
+			break;
+		case 'eliminar':
+			$persona->eliminar();
+			break;
+		default:
+			?>
+				<script>
+					alert("No existe la ruta");
+					window.location="PersonasControlador.php?operacion=index";
+				</script>
+			<?php
+			break;
+	}//switch
+}//funcion controlador
+}//class
 PersonasControlador::controlador($operacion);
 ?>

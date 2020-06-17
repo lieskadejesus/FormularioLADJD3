@@ -8,26 +8,25 @@ $data=unserialize($data);
 	<title>Editando Personas</title>
 </head>
 <body>
-	<br>
-	<form action="PersonasControlador.php" method="post" name="formularios">
+	<form action="PersonasControlador.php" method="post" name="formulario">
 		<table>
 			<tr>
-				<td colspan="2">Editar Personas:</td>
+				<td colspan="2">Formlario</td>
 			</tr>
 			<tr>
-				<td>Nombres:</td><td><input type="text" name="nombres" id="nombres" placeholder="Ej: Martin José" title="Ingrese sus names" value="<?=$data[1]?>"></td>
+				<td>Nombres:</td><td><input type="text" name="nombres" id="nombres" placeholder="Ej: Martin Jose" title="Ingrese sus Nombres" value="<?=$data[1]?>"></td>
 			</tr>
 			<tr>
-				<td>Apellidos:</td><td><input type="text" name="apellidos" id="apellidos" placeholder="Ej: Perez Salcedo" title="Ingrese sus surnames" value="<?=$data[2]?>"></td>
+				<td>Apellidos:</td><td><input type="text" name="apellidos" id="apellidos" placeholder="Ej: Perez Salcedo" title="Ingrese sus Apellidos" value="<?=$data[2]?>"></td>
 			</tr>
 			<tr>
-				<td>Cédula:</td><td><input type="number" name="cedula" id="cedula" placeholder="Ej: 12345678" title="Ingrese su cedula" value="<?=$data[3]?>"></td>
+				<td>cedula:</td><td><input type="number" name="cedula" id="cedula" placeholder="Ej: 12345678" title="Ingrese sus cedula" value="<?=$data[3]?>"></td>
 			</tr>
 			<tr>
 				<td>
 					<input type="hidden" name="id_persona" value="<?=$data[0]?>">
 					<input type="hidden" name="operacion" value="actualizar">
-					<input type="submit" name="enviar" value="Enviar"></td>		
+					<input type="submit" name="enviar" value="Modificar"></td>
 			</tr>
 		</table>
 	</form>
