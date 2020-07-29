@@ -38,13 +38,12 @@ else
 	<title>Inmuebles</title>
 </head>
 <body>
-	<br><a href="realizar.php">Ingresar registros</a><br>
+	<center><br><a href="realizar.php" >Realizar Registros</a><br></center>
 		<table width="100%" bgcolor="C38BFC" align="center">
 			<tr align="center">
 				<th colspan="6" bgcolor="8C29C2" style=" border-style:dashed;"><h2><font color="white" face="Harrington" >Registros de Datos ingresados</font></h2></th>
 			</tr>
 				<tr align="center">
-					<td><b>ID</b></td>
 					<td><b>Identificacion</b></td>
 					<td><b>Estacionamiento</b></td>
 					<td><b>Estado</b></td>
@@ -60,8 +59,8 @@ else
 		 		?>
 
 			 		<tr align="center">
-				 		<td bgcolor="8C29C2"><?php echo $reg['id']; ?></td>
-				 		<td><?php echo $reg['idem']; ?></td>
+				
+				 	    <td><?php echo $reg['idem']; ?></td>
 				 		<td><?php echo $reg['estacionamiento']; ?></td>
 				 		<td><?php echo $reg['status']; ?></td>
 				 		<td><?php echo $reg['tipo']; ?></td>
